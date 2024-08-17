@@ -14,7 +14,7 @@ def user_interaction():
     hh_vacancies = hh_api.get_vacancies(user_query, pages, per_pages)
 
     vacancies_list = Vacancy.cast_to_object_list(hh_vacancies)
-    print(len(vacancies_list))
+
     json_saver = JSONSaver("data/hh2.json")
     json_saver.add_vacancies(vacancies_list)
 
