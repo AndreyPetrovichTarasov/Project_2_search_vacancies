@@ -1,15 +1,17 @@
 import os
 import json
 import csv
-
+from typing import List
 from src.abs_classes import Files
 
 
 class JSONSaver(Files):
-    def __init__(self, file_path="data/hh.json"):
+    """Класс для работы с файлами"""
+    def __init__(self, file_path: str = "data/hh.json") -> None:
         self.__file_path = file_path
 
-    def get_data(self):
+    def get_data(self) -> List:
+        """Метод получения данных из файла"""
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r+", encoding="utf-8") as f:
                 try:
@@ -23,8 +25,8 @@ class JSONSaver(Files):
             existing_vacancies = []
             return existing_vacancies
 
-    def add_vacancies(self, vacancies_list):
-
+    def add_vacancies(self, vacancies_list: List) -> None:
+        """Метод добавления вакансий в файл"""
         existing_vacancies = self.get_data()
 
         existing_vacancies_dict = {vacancy['id']: vacancy for vacancy in existing_vacancies}
@@ -43,7 +45,8 @@ class JSONSaver(Files):
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(existing_vacancies, f, ensure_ascii=False, indent=4)
 
-    def delete_vacancy(self, del_num):
+    def delete_vacancy(self, del_num: int) -> List | None:
+        """Метод для удаления вакансий из файла"""
         existing_vacancies = self.get_data()
         if not existing_vacancies:
             return []
@@ -58,17 +61,21 @@ class JSONSaver(Files):
 
 
 class CSVSaver(Files):
-    def __init__(self, file_path="data/vacancies.csv"):
+    """Дополнительный клас для работы с CSV файлами"""
+    def __init__(self, file_path="data/vacancies.csv") -> None:
+        """Инициализатор класса"""
         self.__file_path = file_path
 
-    def get_data(self):
+    def get_data(self) -> List:
+        """Метод получения данных из CSV файла"""
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 return list(reader)
         return []
 
-    def add_vacancies(self, vacancies_list):
+    def add_vacancies(self, vacancies_list: List) -> None:
+        """Метод добавления вакансий в CSV файл"""
         with open(self.__file_path, "a", encoding="utf-8", newline='') as f:
             writer = csv.DictWriter(f, fieldnames=vacancies_list[0].keys())
             if f.tell() == 0:
@@ -76,5 +83,6 @@ class CSVSaver(Files):
             for vacancy in vacancies_list:
                 writer.writerow(vacancy)
 
-    def delete_vacancy(self, del_number):
+    def delete_vacancy(self, del_number: int) -> None:
+        """Метод для удаления вакансий из CSV файла. В разработке."""
         pass

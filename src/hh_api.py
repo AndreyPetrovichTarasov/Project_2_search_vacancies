@@ -1,5 +1,5 @@
 import requests
-
+from typing import List, Optional
 from src.abs_classes import ApiParser
 
 
@@ -9,13 +9,14 @@ class HeadHunterAPI(ApiParser):
     """
 
     def __init__(self):
-
+        """Инициализатор класса. Все атрибуты приватные."""
         self.__url = 'https://api.hh.ru/vacancies'
         self.__headers = {'User-Agent': 'HH-User-Agent'}
         self.__params = {'text': '', 'page': 2, 'per_page': 5}
         self.__vacancies = []
 
-    def _get_response(self, keyword, pages, per_page):
+    def _get_response(self, keyword: str, pages: int, per_page: int) -> Optional[requests.Response]:
+        """Метод подключения к АПИ"""
         self.__params['text'] = keyword
         self.__params["page"] = pages
         self.__params['per_page'] = per_page
@@ -30,7 +31,8 @@ class HeadHunterAPI(ApiParser):
         except Exception as e:
             print(f"Возникла непредвиденная ошибка - {e}")
 
-    def get_vacancies(self, keyword: str, pages: int, per_page: int):
+    def get_vacancies(self, keyword: str, pages: int, per_page: int) -> List:
+        """Метод преобразования ответа с АПИ в Python объект"""
         all_vacancies = []
         for page in range(pages):
             response = self._get_response(keyword, page, per_page)

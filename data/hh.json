@@ -1,0 +1,16 @@
+[
+    {
+        "id": "105415952",
+        "name": "Инженер по тестированию",
+        "url": "https://hh.ru/vacancy/105415952",
+        "description": "Базовые знания SQL. - Знание языков программирования <highlighttext>Python</highlighttext> или Java. - Уверенное владение офисным ПО (текстовые редакторы, редакторы таблиц, презентаций). - ",
+        "salary": 115000
+    },
+    {
+        "id": "105882795",
+        "name": "Backend Python разработчик",
+        "url": "https://hh.ru/vacancy/105882795",
+        "description": "опыт разработки на <highlighttext>Python</highlighttext> год и более, хорошее знание языка и его экосистемы. - знание Django и Django Rest Framework. - ",
+        "salary": 0
+    }
+]
