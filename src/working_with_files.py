@@ -1,7 +1,7 @@
 import os
 import json
 import csv
-from typing import List
+from typing import List, Any
 from src.abs_classes import Files
 
 
@@ -10,7 +10,7 @@ class JSONSaver(Files):
     def __init__(self, file_path: str = "data/hh.json") -> None:
         self.__file_path = file_path
 
-    def get_data(self) -> List:
+    def get_data(self) -> Any:
         """Метод получения данных из файла"""
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r+", encoding="utf-8") as f:
@@ -45,7 +45,7 @@ class JSONSaver(Files):
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(existing_vacancies, f, ensure_ascii=False, indent=4)
 
-    def delete_vacancy(self, del_num: int) -> List | None:
+    def delete_vacancy(self, del_num: str) -> Any:
         """Метод для удаления вакансий из файла"""
         existing_vacancies = self.get_data()
         if not existing_vacancies:
@@ -62,7 +62,7 @@ class JSONSaver(Files):
 
 class CSVSaver(Files):
     """Дополнительный клас для работы с CSV файлами"""
-    def __init__(self, file_path="data/vacancies.csv") -> None:
+    def __init__(self, file_path: str = "data/vacancies.csv") -> None:
         """Инициализатор класса"""
         self.__file_path = file_path
 
@@ -83,6 +83,6 @@ class CSVSaver(Files):
             for vacancy in vacancies_list:
                 writer.writerow(vacancy)
 
-    def delete_vacancy(self, del_number: int) -> None:
+    def delete_vacancy(self, del_number: str) -> None:
         """Метод для удаления вакансий из CSV файла. В разработке."""
         pass

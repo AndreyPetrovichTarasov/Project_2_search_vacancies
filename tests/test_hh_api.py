@@ -1,15 +1,14 @@
-import pytest
 import requests
 from unittest.mock import patch
-from src.hh_api import HeadHunterAPI  # Импортируйте класс из вашего модуля
+from src.hh_api import HeadHunterAPI  # РРјРїРѕСЂС‚РёСЂСѓР№С‚Рµ РєР»Р°СЃСЃ РёР· РІР°С€РµРіРѕ РјРѕРґСѓР»СЏ
 
 
-# Тестируем метод _get_response
+# РўРµСЃС‚РёСЂСѓРµРј РјРµС‚РѕРґ _get_response
 def test_get_response_success():
     api = HeadHunterAPI()
 
     with patch('src.hh_api.requests.get') as mock_get:
-        # Настраиваем мок
+        # РќР°СЃС‚СЂР°РёРІР°РµРј РјРѕРє
         mock_response = requests.Response()
         mock_response.status_code = 200
         mock_response._content = b'{"items": []}'
@@ -24,7 +23,7 @@ def test_get_response_failure():
     api = HeadHunterAPI()
 
     with patch('src.hh_api.requests.get') as mock_get:
-        # Настраиваем мок
+        # РќР°СЃС‚СЂР°РёРІР°РµРј РјРѕРє
         mock_response = requests.Response()
         mock_response.status_code = 500
         mock_get.return_value = mock_response
@@ -33,17 +32,17 @@ def test_get_response_failure():
         assert response is None
 
 
-# Тестируем метод get_vacancies
+# РўРµСЃС‚РёСЂСѓРµРј РјРµС‚РѕРґ get_vacancies
 def test_get_vacancies():
     api = HeadHunterAPI()
 
     with patch('src.hh_api.requests.get') as mock_get:
-        # Настраиваем мок для первой страницы
+        # РќР°СЃС‚СЂР°РёРІР°РµРј РјРѕРє РґР»СЏ РїРµСЂРІРѕР№ СЃС‚СЂР°РЅРёС†С‹
         mock_response_page_1 = requests.Response()
         mock_response_page_1.status_code = 200
         mock_response_page_1._content = b'{"items": [{"id": "1", "name": "Dev"}]}'
 
-        # Настраиваем мок для второй страницы
+        # РќР°СЃС‚СЂР°РёРІР°РµРј РјРѕРє РґР»СЏ РІС‚РѕСЂРѕР№ СЃС‚СЂР°РЅРёС†С‹
         mock_response_page_2 = requests.Response()
         mock_response_page_2.status_code = 200
         mock_response_page_2._content = b'{"items": [{"id": "2", "name": "Dev2"}]}'
@@ -57,7 +56,7 @@ def test_get_vacancies():
         assert vacancies[1]['id'] == '2'
 
 
-# Тестируем обработку исключений
+# РўРµСЃС‚РёСЂСѓРµРј РѕР±СЂР°Р±РѕС‚РєСѓ РёСЃРєР»СЋС‡РµРЅРёР№
 def test_get_vacancies_with_exception():
     api = HeadHunterAPI()
 

@@ -27,4 +27,3 @@ def test_delete_vacancy(vacancies_fixture):
 
     data = saver.get_data()
     assert len(data) == 2
-

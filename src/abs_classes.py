@@ -1,33 +1,34 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Optional
+import requests
 
 
 class ApiParser(ABC):
-    """Абстрактный класс для работы с АПИ HH.RU"""
+    """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РђРџР HH.RU"""
     @abstractmethod
-    def _get_response(self, keyword: str, page: int, per_page: int):
-        """Абстрактный метод для подключения к АПИ"""
+    def _get_response(self, keyword: str, page: int, per_page: int) -> Optional[requests.Response]:
+        """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє РђРџР"""
         pass
 
     @abstractmethod
-    def get_vacancies(self, keyword: str, page: int, per_page: int):
-        """Абстрактный метод для преобразования ответа с АПИ в Python объект"""
+    def get_vacancies(self, keyword: str, page: int, per_page: int) -> List:
+        """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РѕС‚РІРµС‚Р° СЃ РђРџР РІ Python РѕР±СЉРµРєС‚"""
         pass
 
 
 class Files(ABC):
-    """Абстрактный класс для работы с файлами"""
+    """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»Р°РјРё"""
     @abstractmethod
     def get_data(self) -> List:
-        """Абстрактный метод для получения данных из файла"""
+        """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°"""
         pass
 
     @abstractmethod
     def add_vacancies(self, hh_vacancies: List) -> None:
-        """Абстрактный метод для добавления вакансий в файл"""
+        """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РІР°РєР°РЅСЃРёР№ РІ С„Р°Р№Р»"""
         pass
 
     @abstractmethod
     def delete_vacancy(self, del_number: str) -> List | None:
-        """Абстрактный метод для удаления вакансий из файла"""
+        """РђР±СЃС‚СЂР°РєС‚РЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РІР°РєР°РЅСЃРёР№ РёР· С„Р°Р№Р»Р°"""
         pass

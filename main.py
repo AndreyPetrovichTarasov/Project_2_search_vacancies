@@ -6,7 +6,8 @@ from src.user_function import (filter_vacancies, get_vacancies_by_salary,
 from src.user_interaction import search_query, filter_data, delete_vacancy
 
 
-def user_interaction():
+def user_interaction() -> None:
+    """Главная функция взаимодействия с пользователем."""
     user_query, pages, per_pages = search_query()
 
     hh_api = HeadHunterAPI()

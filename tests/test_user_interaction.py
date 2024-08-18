@@ -1,4 +1,3 @@
-import pytest
 from src.user_interaction import search_query, filter_data, delete_vacancy
 
 

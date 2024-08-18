@@ -49,4 +49,3 @@ def test_print_vacancies(capsys, vacancies_fixture):
     )
 
     assert captured.out == expected_output
-    

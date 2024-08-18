@@ -60,14 +60,14 @@ class Vacancy:
     @staticmethod
     def salary_data(vacancy: Dict) -> Any:
         """Статический метод класса для проверки ключей по зарплате"""
-        if vacancy.get("salary") is None:
+        if vacancy["salary"] is None:
             return 0
-        elif vacancy.get("salary").get("from") and vacancy.get("salary").get("to") is None:
-            return vacancy.get("salary").get("from")
-        elif vacancy.get("salary").get("from") is None and vacancy.get("salary").get("to"):
-            return vacancy.get("salary").get("to")
+        elif vacancy["salary"]["from"] and vacancy["salary"]["to"] is None:
+            return vacancy["salary"]["from"]
+        elif vacancy["salary"]["from"] is None and vacancy["salary"]["to"]:
+            return vacancy["salary"]["to"]
         else:
-            return (vacancy.get("salary").get("to") + vacancy.get("salary").get("from")) / 2
+            return (vacancy["salary"]["to"] + vacancy["salary"]["from"]) / 2
 
     @classmethod
     def cast_to_object_list(cls, hh_vacancies: List) -> List:

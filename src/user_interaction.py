@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import Any, Optional
 
 
-def search_query() -> Optional[str,int]:
+def search_query() -> Any:
     """Функция, запрашивающая у пользователя ключевое слово и количество вакансий для запроса"""
     user_query = input("Введите поисковый запрос: ")
     try:
@@ -14,18 +14,18 @@ def search_query() -> Optional[str,int]:
     return user_query, pages, per_pages
 
 
-def filter_data() -> Optional[str, int]:
+def filter_data() -> Any:
     """Функция, запрашивающая у пользователя ключевое слово, уровень зарплаты и топ n для вывода"""
     print("Данные сформированы.")
 
     filter_words = input("Введите ключевые слова для фильтрации вакансий: ")
 
-    salary = input("Введите нижний порог зарплаты: ")
-    if not salary:
+    salary_input = input("Введите нижний порог зарплаты: ")
+    if not salary_input:
         salary = 0
     else:
         try:
-            salary = int(salary)
+            salary = int(salary_input)
         except Exception as e:
             print(f"Неверный ввод. Ошибка величины зарплаты - {e}. Перезапустите программу.")
             return None

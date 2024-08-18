@@ -8,12 +8,12 @@ class HeadHunterAPI(ApiParser):
     Класс для работы с API HeadHunter
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Инициализатор класса. Все атрибуты приватные."""
         self.__url = 'https://api.hh.ru/vacancies'
         self.__headers = {'User-Agent': 'HH-User-Agent'}
         self.__params = {'text': '', 'page': 2, 'per_page': 5}
-        self.__vacancies = []
+        self.__vacancies: List = []
 
     def _get_response(self, keyword: str, pages: int, per_page: int) -> Optional[requests.Response]:
         """Метод подключения к АПИ"""
