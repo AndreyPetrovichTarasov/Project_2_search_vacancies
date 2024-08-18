@@ -45,7 +45,7 @@ class JSONSaver(Files):
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump(existing_vacancies, f, ensure_ascii=False, indent=4)
 
-    def delete_vacancy(self, del_num: str) -> Any:
+    def delete_vacancy(self, del_num: int) -> Any:
         """Метод для удаления вакансий из файла"""
         existing_vacancies = self.get_data()
         if not existing_vacancies:
