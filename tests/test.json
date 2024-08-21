@@ -1,0 +1,16 @@
+[
+    {
+        "id": "200",
+        "name": "Analytic",
+        "url": "http://2.com",
+        "description": "Python analytic",
+        "salary": 20000
+    },
+    {
+        "id": "300",
+        "name": "Manager",
+        "url": "http://3.com",
+        "description": "Python manager",
+        "salary": 30000
+    }
+]
